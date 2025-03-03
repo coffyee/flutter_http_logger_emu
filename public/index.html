@@ -127,7 +127,7 @@
                 const deviceIp = data.ip; // Get the detected device IP
                 document.getElementById('device-ip').textContent = `Device IP: ${deviceIp}`;
 
-                const wsPort = 8080; // WebSocket port
+                const wsPort = 9090; // WebSocket port
                 const wsUrl = `ws://${deviceIp}:${wsPort}`; // Construct WebSocket URL
 
                 // Update the status to show the detected IP
@@ -186,7 +186,7 @@
                 if (log.status !== 200) {
                     listItem.style.color = 'red';
                 }
-                if (index === selectedLogIndex) {
+                if (index === logs.length - selectedLogIndex) {
                     listItem.classList.add('selected');
                 }
                 urlList.appendChild(listItem);
@@ -213,7 +213,7 @@
                 <h3>Response</h3>
                 ${log.response ? `<pre>${JSON.stringify(log.response, null, 2)}</pre>` : ''}
             `;
-                selectedLogIndex = index;
+                selectedLogIndex = logs.length - index;
                 updateURLList();
             } else {
                 details.innerHTML = '<p>Error: Log details not available.</p>';
@@ -222,7 +222,7 @@
 
         // Copy log data to clipboard
         function copyToClipboard() {
-            var log = logs[selectedLogIndex];
+            var log = logs[logs.length - selectedLogIndex];
             var includeHeader = document.getElementById('headerCheckbox').checked;
             var dataToCopy = `URL: ${log.url}\n\n`;
             if (includeHeader) {

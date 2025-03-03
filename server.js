@@ -5,7 +5,7 @@ const os = require('os');
 
 const app = express();
 const PORT = 3000; // HTTP server port
-const WS_PORT = 8080; // WebSocket server port
+const WS_PORT = 9090; // WebSocket server port
 
 // Function to get the device's local IP address
 function getLocalIPAddress() {
@@ -40,7 +40,7 @@ httpServer.listen(PORT, () => {
     console.log(`or http://localhost:${PORT}`);
 });
 
-// Create a combined HTTP and WebSocket server on port 8080
+// Create a combined HTTP and WebSocket server on port 9090
 const combinedServer = http.createServer((req, res) => {
     // Respond with "Not Found" for all HTTP requests
     res.writeHead(403, { 'Content-Type': 'text/plain' });
